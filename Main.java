@@ -1,53 +1,212 @@
+package superClase;
+import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Collections;
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
+        ArrayList<menorEdad> lst= new ArrayList<>(10);
+        Random rand=new Random();
 
-            int[][] matriz_1 = {{3, 5}, {8, 7}};
-            int[][] matriz_2 = {{7, 1}, {6, 4}};
-            int[][] resultado_1 = matriz.mutiplicacionDeMatriz(matriz_1, matriz_2);
-            System.out.println("matriz 1:" + Arrays.deepToString(matriz_1));
-            System.out.println("matriz 2:" + Arrays.deepToString(matriz_2));
-            System.out.println("resultado:" + Arrays.deepToString(resultado_1));
+        //make random
+        String[] nombres= {"Alan", "Diego", "Emilio", "Angel", "Miguel", "Gaspa", "Kahim", "Carlos", "Genaro", "Danna"};
+        List<String> shuffled=Arrays.asList(nombres);
+        Collections.shuffle(shuffled);
+        shuffled.toArray(nombres);
 
-            //#########################################################################
+        menorEdad ob1=new menorEdad(); menorEdad ob2=new menorEdad();
+        menorEdad ob3=new menorEdad(); menorEdad ob4=new menorEdad();
+        menorEdad ob5=new menorEdad(); menorEdad ob6=new menorEdad();
+        menorEdad ob7=new menorEdad(); menorEdad ob8=new menorEdad();
+        menorEdad ob9=new menorEdad(); menorEdad ob10=new menorEdad();
 
-            int[][] matriz_3 = {{5, 2}, {4, 1}, {1, 2}};
-            int[][] resultado_2 = matriz.traspuestaDeUnaMatriz(matriz_3);
-            System.out.println("matriz 3:" + Arrays.deepToString(matriz_3));
-            System.out.println("resultado:" + Arrays.deepToString(resultado_2));
+        lst.add(ob1);  lst.add(ob2);  lst.add(ob3); lst.add(ob4); lst.add(ob5);
+        lst.add(ob6); lst.add(ob7); lst.add(ob8); lst.add(ob9); lst.add(ob10);
 
-            //#########################################################################
+        int k=0;
+        for(menorEdad i:lst) {
+            i.setNombre(nombres[k]);
+            k++;
+        }
 
-            int[][] matriz_4 = {{7, 2, 6}, {4, 6, 2}, {1, 0, 2}};
-            int resultado_3 = matriz.sumaDiagonalDeMatriz(matriz_4);
-            System.out.println("matriz 4:" + Arrays.deepToString(matriz_4));
-            System.out.println("resultado:" + (resultado_3));
+        for (int i = 0; i < lst.size(); i++) {
+            for (int j = 0;j < lst.size(); j++) {
+                if(i != j) {
+                    boolean getEstudioCondition = lst.get(i).getEstudio()==lst.get(j).getEstudio();
+                    boolean getVotoCondition = lst.get(i).getVoto()==lst.get(j).getVoto();
+                    boolean getMayorDe18Condition = lst.get(i).getMayorDe18()==lst.get(j).getMayorDe18();
+                    boolean getIneCondition = lst.get(i).getIne()==lst.get(j).getIne();
+                    if(getEstudioCondition && getVotoCondition && getMayorDe18Condition && getIneCondition) {
+                        lst.get(i).setter();
+                        lst.get(j).setter();
+                    }//end if
+                }//end if
+            }//end for
+        }//end for
+        ob1.getters(); ob2.getters(); ob3.getters(); ob4.getters(); ob5.getters();
+        ob6.getters(); ob7.getters(); ob8.getters(); ob9.getters(); ob10.getters();
 
-            //#########################################################################
+        //##############################################################################################################
 
-            int[][] matriz_5 = {{7, 2, 6}, {4, 6, 2}, {1, 0, 2}};
-            int resultado_4 = matriz.maximoDeUnaMatriz(matriz_5);
-            System.out.println("matriz 5:" + Arrays.deepToString(matriz_5));
-            System.out.println("resultado:" + (resultado_4));
+        int ine=0;
+        int mayorDe18=0;
+        int estudios=0;
+        int voto=0;
 
-            //#########################################################################
+        for(menorEdad i:lst) {
+            if(i.getIne()) {
+                ine++;
+            }
+            if(i.getVoto()) {
+                voto++;
+            }
+            if(i.getEstudio()) {
+                estudios++;
+            }
+            if(i.getMayorDe18()) {
+                mayorDe18++;
+            }
+        }
+        System.out.println("Ine: "+ine+"\n"+"voto: "+voto+"\n"+"Estudios: "+estudios+"\n"+"mayor De 18: "+mayorDe18);
+        Scanner input=new Scanner(System.in);
+        System.out.println("Bienvenido a Adivina Quien?, ingrese un numero para inciar con las preguntas:");
 
-            int[][] matriz_6 = {{3, 5}, {8, 7}};
-            int[][] matriz_7 = {{7, 1}, {6, 4}};
-            int[][] resultado_5 = matriz.sumaDeDosMatrices(matriz_6, matriz_7);
-            System.out.println("matriz 6:" + Arrays.deepToString(matriz_6));
-            System.out.println("matriz 7:" + Arrays.deepToString(matriz_7));
-            System.out.println("resultado_5 = " + Arrays.deepToString(resultado_5));
+        //##################################################################################################
 
-            //#########################################################################
+        int preguntas=0;
+        int pre=rand.nextInt(11);
+        int p1=0;
+        int p2=0;
+        int p3=0;
+        int p4=0;
 
-            int[][] matriz_8 = {{7, 6}, {9, 1}};
-            int escalar_1 = 6;
-            int[][] resultado_6 = matriz.multiplicacionPorUnEscalar(matriz_8, escalar_1);
-            System.out.println("matriz 8:" + Arrays.deepToString(matriz_8));
-            System.out.println("Escalar 1:" + escalar_1);
-            System.out.println("resultado 6:" + Arrays.deepToString(resultado_6));
+        while(preguntas<3) {
+            int answer=input.nextInt();
+            System.out.println("1. tiene Ine? \n2. tiene estudios? \n3. Es mayor de 18? \n4. Voto? \n5. Exit");
 
+            if(answer!= 6) {
+                switch (answer) {
+                    case 1 -> {
+                        if (p1 < 1) {
+                            if (lst.get(pre).getIne()) {
+                                for (superClase.menorEdad menorEdad : lst) {
+                                    if (!menorEdad.getIne()) {
+                                        menorEdad.setNombre("-----");
+                                    }
+                                    System.out.println(menorEdad.getNombre());
+                                }
+                            } else {
+                                for (superClase.menorEdad menorEdad : lst) {
+                                    if (menorEdad.getIne()) {
+                                        menorEdad.setNombre("-----");
+                                    }
+                                    System.out.println(menorEdad.getNombre());
+                                }
+                            }
+                            p1++;
+                            preguntas++;
+                            System.out.println();
+                        } else {
+                            System.out.println("escoje otra pregunta");
+                        }
+                    }
+                    case 2 -> {
+                        if (p2 < 1) {
+                            if (lst.get(pre).getEstudio()) {
+                                for (superClase.menorEdad menorEdad : lst) {
+                                    if (!menorEdad.getEstudio()) {
+                                        menorEdad.setNombre("-----");
+                                    }
+                                    System.out.println(menorEdad.getNombre());
+                                }
+                            } else {
+                                for (superClase.menorEdad menorEdad : lst) {
+                                    if (menorEdad.getEstudio()) {
+                                        menorEdad.setNombre("----+-");
+                                    }
+                                    System.out.println(menorEdad.getNombre());
+                                }
+                            }
+                            p2++;
+                            preguntas++;
+                            System.out.println();
+                        } else {
+                            System.out.println("ya hiciste esa pregunta guapo");
+                        }
+                    }
+                    case 3 -> {
+                        if (p3 < 1) {
+                            if (lst.get(pre).getMayorDe18()) {
+                                for (superClase.menorEdad menorEdad : lst) {
+                                    if (!menorEdad.getMayorDe18()) {
+                                        menorEdad.setNombre("-----");
+                                    }
+                                    System.out.println(menorEdad.getNombre());
+                                }
+                            } else {
+                                for (superClase.menorEdad menorEdad : lst) {
+                                    if (!menorEdad.getMayorDe18()) {
+                                        System.out.println(menorEdad.getNombre());
+                                    } else {
+                                        menorEdad.setNombre("---");
+                                    }
+                                    System.out.println(menorEdad.getNombre());
+                                }
+                            }
+                            p3++;
+                            preguntas++;
+                            System.out.println();
+                        } else {
+                            System.out.println("prueba con otra :)");
+                        }
+                    }
+                    case 4 -> {
+                        if (p4 < 1) {
+                            if (lst.get(pre).getVoto()) {
+                                for (superClase.menorEdad menorEdad : lst) {
+                                    if (!menorEdad.getVoto()) {
+                                        menorEdad.setNombre("----");
+                                    }
+                                    System.out.println(menorEdad.getNombre());
+                                }
+                            } else {
+                                for (superClase.menorEdad menorEdad : lst) {
+                                    if (!menorEdad.getVoto()) {
+                                        System.out.println(menorEdad.getNombre());
+                                    } else {
+                                        menorEdad.setNombre("-----");
 
+                                    }
+                                    System.out.println(menorEdad.getNombre());
+                                }
+                            }
+                            p4++;
+                            preguntas++;
+                            System.out.println();
+                        } else {
+                            System.out.println("vuelva a intentar y trate de hacerlo bien esta vez");
+                        }
+                    }
+                    default -> System.out.println("no se  puede bb");
+                        }
+                    }else {
+                System.out.println("SALIENDO.....");
+                break;
+                }
+            }
+        System.out.println("adivina a tu personaje\n");
+        Scanner respuesta=new Scanner(System.in);
+        String resp=respuesta.nextLine();
+
+        if(lst.get(pre).getNombre().equals(resp))
+            System.out.println("\nbien hecho, estás en lo correcto");
+
+        else {
+            System.out.println("mal ahi amigo, no le sabes");
+            System.out.println("tu personaje era "+lst.get(pre).getNombre());
         }
     }
+}
